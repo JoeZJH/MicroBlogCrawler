@@ -81,7 +81,7 @@ def get_status_by_status_id(status_id):
     params["id"] = status_id
     status_json = ch.get_json_data(cc.status_base_url, params=params, post_data=None)
     if ch.check_json_format(status_json) is False:
-        logging.error("Error to json String: [%s]", status_json)
+        logging.error("Error to json String: [%s...]", status_json[0:10])
         return None
     raw_status = json.loads(status_json)
     status = format_status(raw_status)
@@ -116,7 +116,8 @@ def get_statuses_by_user_id(user_id):
     :return: a list of statuses
     """
     profile = get_profile_by_user_id(user_id)
-
+    if profile is None:
+        return None
     statuses = list()
     for partial_status in profile["data"]["statuses"]:
         status_id = partial_status["id"]
@@ -148,6 +149,8 @@ def crawler_statuses_and_write_to_file():
     user_ids = ch.read_object_from_file(cc.user_ids_path)
     for user_id in user_ids:
         statuses = get_statuses_by_user_id(user_id=user_id)
+        if statuses is None:
+            logging.warn("statuses is None, user_id: [%s]" % user_id)
         file_name = "statuses_%s.json" % cc.root_user_id
         path = os.path.join(cc.statuses_dir, file_name)
         ch.write_object_to_file(path, statuses)
