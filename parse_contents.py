@@ -1,8 +1,6 @@
 # -*- coding:utf8 -*-
 
-
-
-
+import re
 import sys
 import os
 import crawler_config as cc
@@ -10,6 +8,20 @@ import crawler_helper as ch
 
 reload(sys)
 sys.setdefaultencoding("utf-8")
+
+
+emoji_pattern = re.compile(
+    u"(\ud83d[\ude00-\ude4f])|"  # emoticons
+    u"(\ud83c[\udf00-\uffff])|"  # symbols & pictographs (1 of 2)
+    u"(\ud83d[\u0000-\uddff])|"  # symbols & pictographs (2 of 2)
+    u"(\ud83d[\ude80-\udeff])|"  # transport & map symbols
+    u"(\ud83c[\udde0-\uddff])"  # flags (iOS)
+    "+", flags=re.UNICODE)
+
+
+def remove_emoji(text):
+    return emoji_pattern.sub(r'', text)
+
 
 def parse_contents_from_files():
     base_path = cc.statuses_dir
@@ -22,7 +34,9 @@ def parse_contents_from_files():
             print filename, "is None"
             continue
         for status in statuses:
-            contents.append(status["text"])
+            text = status["text"]
+            text = remove_emoji(text)
+            contents.append(text)
     return contents
 
 
