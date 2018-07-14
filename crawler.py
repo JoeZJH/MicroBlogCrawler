@@ -151,7 +151,7 @@ def crawler_statuses_and_write_to_file():
         statuses = get_statuses_by_user_id(user_id=user_id)
         if statuses is None:
             logging.warn("statuses is None, user_id: [%s]" % user_id)
-        file_name = "statuses_%s.json" % cc.root_user_id
+        file_name = "statuses_%s.json" % user_id
         path = os.path.join(cc.statuses_dir, file_name)
         ch.write_object_to_file(path, statuses)
 
