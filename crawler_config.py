@@ -16,6 +16,6 @@ user_count = 1000
 root_user_id = 2970452952
 statuses_dir = "./data/statuses/json/"
 user_ids_path = "./data/user-ids/json/user_ids.json"
-contents_path = "./data/parse/contents.txt"
+contents_path = "./data/parse/txt/contents.txt"
 RESPONSE_OK_FLAG = 1
 
