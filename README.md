@@ -1,9 +1,9 @@
 # MicroBlogCrawler
-A crawler for Micro Blog with Python
+A crawler for Micro-blog with Python Language
 
 * get user ids, the max size of user ids could be set by `user_count`(initial value is 1000 now) in `crawler_config.py`
-* get user statuses and parse the contents of statuses
-
+* get user statuses
+* parse the contents of statuses
 
 ## files
 
@@ -16,7 +16,7 @@ A crawler for Micro Blog with Python
 * download this source code
 * install necessary modules, including markdown, requests, bs4, json
 
-## run code
+## run
 	# get user ids and write to file
 	/usr/bin/python user_ids_crawler.py 
 	# get contents of statuses and write to file
