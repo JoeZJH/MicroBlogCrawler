@@ -1,0 +1,6 @@
+data/
+.idea/
+*.log.txt
+*.iml
+*.pyc
+*.DS_Store
