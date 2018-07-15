@@ -94,7 +94,12 @@ def write_save_user_ids_to_file():
     write the result(save_user_ids) to file
     :return:
     """
-    user_ids = list(save_user_ids)
+    old_ids = ch.read_object_from_file(cc.user_ids_path)
+    user_ids = set()
+    old_ids = set(old_ids)
+    if old_ids is not None:
+        user_ids = old_ids | save_user_ids
+    user_ids = list(user_ids)
     ch.write_object_to_file(cc.user_ids_path, user_ids)
 
 

@@ -12,8 +12,8 @@ status_base_url = "https://m.weibo.cn/statuses/show"
 comments_base_url = "https://m.weibo.cn/comments/hotflow"
 
 #
-user_count = 1000
-root_user_id = 2970452952
+user_count = 10000
+root_user_id = 5499252262
 statuses_dir = "./data/statuses/json/"
 user_ids_path = "./data/user-ids/json/user_ids.json"
 contents_path = "./data/parse/txt/contents.txt"
