@@ -8,6 +8,10 @@ import crawler_config as cc
 import os
 import crawler
 
+import proxy_config
+import proxy_helper
+
+
 save_user_ids = set()
 max_size = cc.user_count
 new_user_ids = set()
@@ -104,6 +108,7 @@ def write_save_user_ids_to_file():
 
 
 if __name__ == '__main__':
+    proxy_helper.get_available_proxy_and_write_to_file(proxy_config.page_target_url)
     crawler_user_ids_by_root_user_id(cc.root_user_id)
     write_save_user_ids_to_file()
     print save_user_ids

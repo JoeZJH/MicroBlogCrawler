@@ -7,6 +7,8 @@ import os
 import re
 import markdown
 from bs4 import BeautifulSoup
+import proxy_config
+import proxy_helper
 
 target_headers = {
     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
@@ -30,6 +32,8 @@ def get_html(url, params=None, post_data=None):
     :param post_data: the data(dict) for post, this param will be None when Get method
     :return: a text of html
     """
+    # headers = proxy_config.target_headers
+    proxies = proxy_helper.get_available_random_proxy()
     if params is not None:
         url += "?"
         for key in params.keys():
@@ -37,9 +41,9 @@ def get_html(url, params=None, post_data=None):
         url = url[0:-1]
     # print "url: [%s]" % url
     # print "proxies: %s" % proxies
-    # logging.info("target url: [%s], proxies: [%s]" % (url, proxies))
+    print "target url: [%s], proxies: [%s]" % (url, proxies)
     # print "get_html: %s" % url
-    html = requests.get(url, headers=None)
+    html = requests.get(url, headers=None, proxies=proxies)
     # print "url: [%s]\nhtml.text: [%s]" % (url, html.text.encode("utf-8"))
     return html.text
 

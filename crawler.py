@@ -6,6 +6,8 @@ import json
 import logging
 import crawler_config as cc
 import os
+import proxy_helper
+import proxy_config
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
@@ -158,4 +160,5 @@ def crawler_statuses_and_write_to_file():
 
 
 if __name__ == '__main__':
+    proxy_helper.get_available_proxy_and_write_to_file(proxy_config.page_target_url)
     crawler_statuses_and_write_to_file()
